@@ -6,7 +6,7 @@ console.log(args);
 const rps = ['ROCK', 'PAPER', 'SCISSORS'];
 const win = 'You have foiled me this time human, you better watch your back';
 const loss = 'Easiest win of my robot life, GG human';
-const draw = 'Simple human, we are barely equals; try again if you must.';
+const draw = 'Simple human, we are barely equals; try again if you must stroke your ego.';
 
 // Check if user provided one option && its one of the 3 set options. 
 // Using args[0] because its the first user-generated option.
@@ -28,21 +28,26 @@ const robotChoice = rps[randomizer];
 // 3. Log robotChoice and include string to make it clear which choice is the robots.
 console.log('Your robot nemesis chose: ', robotChoice);
 
-// Determine the winner based on the rules of Rock Paper Scissors.
+// Determine the winner based on the rules of Rock Paper Scissors. 
+// Had an issue with this section because I wrote toUpperCase without parameters, getting 
+// This error: TypeError: args[0].toUppercase is not a function
+const result = determineResult(args[0].toUpperCase(), robotChoice);
+
+function determineResult () {
 if (
-    args[0].toUpperCase === 'ROCK' && robotChoice === 'ROCK' || 
-    args[0].toUpperCase === 'PAPER' && robotChoice === 'PAPER' ||
-    args[0].toUpperCase === 'SCISSORS' && robotChoice === 'SCISSORS') {
+    args[0].toUpperCase() === 'ROCK' && robotChoice === 'ROCK' || 
+    args[0].toUpperCase() === 'PAPER' && robotChoice === 'PAPER' ||
+    args[0].toUpperCase() === 'SCISSORS' && robotChoice === 'SCISSORS') {
   return draw;
 } else if (
-    args[0].toUpperCase === 'ROCK' && robotChoice === 'SCISSORS' ||
-    args[0].toUpperCase === 'SCISSORS' && robotChoice === 'PAPER' ||
-    args[0].toUpperCase === 'PAPER' && robotChoice === 'ROCK'){
+    args[0].toUpperCase() === 'ROCK' && robotChoice === 'SCISSORS' ||
+    args[0].toUpperCase() === 'SCISSORS' && robotChoice === 'PAPER' ||
+    args[0].toUpperCase() === 'PAPER' && robotChoice === 'ROCK'){
   return win;  
 } else {
   return loss;
 }
-
+}
 
 // Output the result (win, lose, or draw) to the console.
-console.log()
+console.log(result);
